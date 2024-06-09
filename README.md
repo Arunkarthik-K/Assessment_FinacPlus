@@ -1,59 +1,65 @@
-# Assessment_FinacPlus
+# *Assessment Report for FinacPlus Project*
+## *Introduction*
+*This report outlines the various stages and methodologies employed in completing the FinacPlus assessment project. The project focuses on the extraction, preprocessing, and classification of financial document types using advanced machine learning techniques. The primary objective is to identify and categorize financial documents such as Balance Sheets, Cash Flows, Income Statements, Notes, and Others with high accuracy.*
 
-# Data Extraction and Preprocessing:
-1. Collect the keywords of the financial files of Balance Sheets, Cash Flow, Income Statement, Notes, Others.
-2. Load HTML files from the file location and extract contents.
-3. Contents include folder name, file name, no of rows & columns, keywords count and text.
-4. Convert the dict to dataframe.
-
-# Embedding:
-1. With the use of hugging face text is converted into embeddings.
-2. Load tokenizer and embedding model for embeddings with "distilbert-base-uncased".
-3. Device: use GPU if available or else CPU
-4. Embedded the text with batch.
-5. Store the embedded text in a new column "embeddings" in the same dataframe.
-
-# Handle the Imbalance:
-1. Here we have an imbalanced data.
-2. Balance Sheets with 271 html files, Cash Flow with 37 html files, Income Statement with 306 html files, Notes with 691 html files, Others with 1225 html files.
-3. By training the same data with model we get the unexpected results.
-4. To overcome this we using SMOTE technique.
-5. We passing the features and target to this class to comeup with balanced data.
-6. Finally we storing the new balanced data in a new dataframe.
-
-# Label Encoding:
-1. We using the XGBClassifier model for our scenario.
-2. To use this model we need to have the target in numbers.
-3. So for this we using label encoder to convert the traget to numbers.
-
-# Storing the label encoding model:
-1. To store the model we use the module called pickle.
-2. With the help of pickle we storing the model in a pkl format.
-
-# Train Test Split:
-1. To train the model we should have a two dataset train and test.
-2. For this using train_test_split function to split the entire dataset as X_train, X_test, y_train, y_test.
-
-# Train Model:
-1. Here we using 3 different model but specially XGBClassifier.
-2. We defining all 3 models.
-3. Fit the X_train and y_train dataset to all 3 model to check which model is performing better.
-
-# Storing the model:
-1. To store the model we use the module called pickle.
-2. With the help of pickle we storing the all the model in a pkl format to predict the results.
-
-# Predict the model:
-1. Load the stored model from the file.
-2. once the model the retrived, predict the results with X_test dataset.
-3. Use the accuracy score and classification report to analys the performance.
-
-# UserInterface:
-Here I using the Gradio application for the user intreaction.
-
-
-# Steps:
-Step 01: Load the dataset as a zip file.
-Step 02: Then run the entire cell to perform all the actions.
-Step 03: Once the entire cell runned successfully the gradio interface will be build.
-Step 04: With the help of interface we can pass the file that we wants to find what kind of file.
+## *Data Extraction and Preprocessing*
+### *Keyword Collection*
+- *Keywords relevant to different financial documents (Balance Sheets, Cash Flow, Income Statement, Notes, Others) were collected.*
+- *These keywords serve as a basis for identifying and categorizing the financial files.*
+### *HTML File Processing*
+- *HTML files were loaded from a specified file location.*
+- *Extracted content included folder names, file names, number of rows and columns, keyword counts, and text.*
+- *The extracted information was stored in a dictionary, which was then converted into a dataframe for further processing.*
+## *Text Embedding*
+### *Embedding Process*
+- *Utilized Hugging Face's transformer models to convert text into embeddings.*
+- *Specifically, the "distilbert-base-uncased" tokenizer and embedding model were employed.*
+- *The process was optimized to use a GPU if available, otherwise defaulting to a CPU.*
+### *Storage of Embedded Text*
+- *The text was embedded in batches and stored in a new column named "embeddings" within the dataframe.*
+## *Handling Data Imbalance*
+### *Identifying Imbalance*
+- *The dataset exhibited significant imbalance across different document types:*
+  - *Balance Sheets: 271 files*
+  - *Cash Flow: 37 files*
+  - *Income Statement: 306 files*
+  - *Notes: 691 files*
+  - *Others: 1225 files*
+### *SMOTE Technique*
+- *Synthetic Minority Over-sampling Technique (SMOTE) was applied to balance the dataset.*
+- *Features and targets were passed to the SMOTE class to generate a balanced dataset, which was stored in a new dataframe.*
+## *Label Encoding*
+### *Target Encoding*
+- *The XGBClassifier model requires numerical targets for training.*
+- *Label encoding was used to convert categorical targets into numerical values.*
+### *Model Storage*
+- *The label encoding model was stored using the pickle module, saved in a .pkl format for later use.*
+## *Train Test Split*
+### *Data Splitting*
+- *The dataset was split into training and testing sets using the train_test_split function.*
+- *This ensured the model could be trained on one portion of the data (X_train, y_train) and tested on another (X_test, y_test) to evaluate performance.*
+## *Model Training*
+### *Model Selection*
+- *Three different models were defined and evaluated, with a particular focus on the XGBClassifier.*
+- *Each model was trained using the training dataset (X_train, y_train).*
+### *Model Evaluation*
+- *The performance of each model was assessed to determine the best performing one.*
+### *Model Storage*
+- *All trained models were stored using the pickle module in .pkl format for future predictions.*
+## *Model Prediction*
+### *Loading and Predicting*
+- *Stored models were loaded from files.*
+- *Predictions were made on the X_test dataset.*
+### *Performance Analysis*
+- *Accuracy scores and classification reports were used to analyze and compare model performance.*
+## *User Interface*
+### *Gradio Application*
+- *Gradio was used to build a user-friendly interface for interacting with the model.*
+- *The interface allows users to upload a file and receive predictions on the document type.*
+### *Implementation Steps*
+1. _**Load the Dataset:** Users load the dataset as a zip file._
+2. _**Run All Cells:** Users execute all cells in the notebook to perform the complete workflow._
+3. _**Build Gradio Interface:** Upon successful execution, the Gradio interface is built._
+4. _**File Classification:** Users can upload files through the interface to classify the document type._
+## Conclusion
+*This project successfully implemented a comprehensive workflow to extract, preprocess, and classify financial documents. By addressing data imbalance and leveraging advanced machine learning models, the system demonstrates robust performance in document categorization. The user interface further enhances usability, allowing seamless interaction and predictions. The methodologies and results from this project can be extended and refined for broader applications in financial document analysis.*
